@@ -15,6 +15,7 @@ const WrapperComp = () => {
 
   return (
     <div className={`bg-zinc-200 py-[4rem] relative font-roboto h-dvh pb-[50rem]
+    sm:pb-[32rem]
      ${darkMode && "dark:bg-stone-900"}
     `}>
       <div className="w-[25rem] h-[43rem] m-auto relative
