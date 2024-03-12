@@ -61,9 +61,18 @@ const Chat = ({
   }, [handleSubmit, messageShortcutSetting]);
 
   return (
-    <div className="w-[25rem] h-[39.5rem] font-roboto">
+    <div className="w-[25rem] h-[39.5rem] font-roboto
+    2xl:w-[24rem] 2xl:h-[35.5rem]
+    xl:w-[20rem] xl:h-[28rem]
+    sm:w-[16rem] sm:h-[25rem] 
+    Xsm:w-[14rem] Xsm:h-[22rem]
+    ">
       <div
-        className={`w-[25rem] h-[33.7rem] bg-chatBg flex justify-end columns-1 p-[0.5rem] overflow-auto custom-scrollbar pt-4 
+        className={`w-[25rem] h-[33.7rem] bg-chatBg flex justify-end columns-1 p-[0.5rem] overflow-auto custom-scrollbar pt-[0.3rem] 
+        2xl:w-[24rem] 2xl:h-[30.5rem]
+        xl:w-[20rem] xl:h-[28rem]
+        sm:w-[16rem] sm:h-[25rem]
+        Xsm:w-[14rem] Xsm:h-[22rem]
         ${settingsVisible ? "opacity-90" : "opacity-100"} 
         ${darkMode && "dark:bg-darkcommon"}
         `}
@@ -119,6 +128,10 @@ const Chat = ({
       />
       <div
         className={`w-[25rem] h-[5rem] bg-headerBg flex items-center justify-center
+        2xl:w-[24rem] 2xl:h-[5rem] 
+        xl:w-[20rem] xl:h-[4rem]
+        sm:w-[16rem] sm:h-[3rem]
+        Xsm:w-[14rem]
         ${darkMode && "dark:bg-darkHeadInput"}
       `}
       >
@@ -129,6 +142,8 @@ const Chat = ({
             px-[1.5rem] text-[0.8rem] bg-chatBg text-maincommonColor
            placeholder-maincommonColor placeholder-opacity-753
            focus:placeholder-gray-100 
+           xl:w-[17.5rem] xl:h-[2.5rem]
+           sm:w-[16rem] sm:h-[2rem]
            ${
              darkMode &&
              "dark:bg-darkcommon text-whiteletters placeholder-whiteletters  dark:focus:placeholder-darkcommon "
@@ -146,12 +161,17 @@ const Chat = ({
         />
         <div
           className={`h-[3rem] w-auto flex items-center bg-chatBg pr-[1rem]
+          xl:h-[2.5rem]
+          sm:h-[2rem]
           ${darkMode && "dark:bg-darkcommon "}
         `}
         >
           <img
             onClick={handleSubmit}
             className={`bg-chatBg  w-[1.8rem] h-[1.6rem] cursor-pointer fill-slate-700
+            xl:w-[1.4rem] xl:h-[1.4rem]
+            sm:w-[1.2rem] sm:h-[1.2rem]
+            Xsm:w-[1.1rem] Xsm:h-[1.1rem]
             ${darkMode && "dark:bg-darkcommon "}
             `}
             src={darkMode ? darkSend : sendIcon}
