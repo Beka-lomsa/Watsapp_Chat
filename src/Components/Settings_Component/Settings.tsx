@@ -180,7 +180,7 @@ const Settings = ({
               Xsm:flex Xsm:flex-col Xsm:ml-[1rem]
             "
             >
-              <div>
+              <p>
                 {language === "Georgian"
                   ? "გაგზავნა"
                   : language === "English"
@@ -188,7 +188,7 @@ const Settings = ({
                   : language === "Spanish"
                   ? "Enviar con"
                   : "Default Result"}
-              </div>
+              </p>
               <span className="font-medium ml-[0.2rem]
               Xsm:ml-[0rem]
               ">CTRL+ENTER</span>
