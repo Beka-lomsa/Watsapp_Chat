@@ -142,8 +142,9 @@ const Chat = ({
             px-[1.5rem] text-[0.8rem] bg-chatBg text-maincommonColor
            placeholder-maincommonColor placeholder-opacity-753
            focus:placeholder-gray-100 
-           xl:w-[17.5rem] xl:h-[2.5rem]
-           sm:w-[16rem] sm:h-[2rem]
+           xl:w-[16.5rem] xl:h-[2.5rem]
+           sm:w-[13rem] sm:h-[2rem] sm:px-[0.5rem]
+           Xsm:w-[11rem]
            ${
              darkMode &&
              "dark:bg-darkcommon text-whiteletters placeholder-whiteletters  dark:focus:placeholder-darkcommon "
