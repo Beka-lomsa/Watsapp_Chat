@@ -1,0 +1,166 @@
+import { ChangeEvent, useState, useEffect, useRef } from "react";
+import Clock from "../Clock_12_24/Clock";
+import sendIcon from "../../img/sendIcon.png";
+import darkSend from "../../img/darkSend.png";
+import { v4 as uuidv4 } from "uuid";
+
+interface chatProps {
+  settingsVisible: boolean;
+  darkMode: boolean;
+  messageShortcutSetting: boolean;
+  clocksDisplay: boolean;
+  language: string;
+}
+
+const Chat = ({
+  settingsVisible,
+  darkMode,
+  messageShortcutSetting,
+  clocksDisplay,
+  language,
+}: chatProps) => {
+  const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<
+    { id: string; text: string; time: Date }[]
+  >([]);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleChangeMessage = (e: ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+  };
+  const handleSubmit = () => {
+    if (message.trim() !== "") {
+      const newMessage = {
+        id: uuidv4(),
+        text: message,
+        time: new Date(),
+      };
+      setMessages([...messages, newMessage]);
+      setMessage("");
+    }
+  };
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = contentRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  //  ShortcutEvent
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (messageShortcutSetting === true && e.key === "Enter" && e.ctrlKey) {
+        handleSubmit();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleSubmit, messageShortcutSetting]);
+
+  return (
+    <div className="w-[25rem] h-[39.5rem] font-roboto">
+      <div
+        className={`w-[25rem] h-[33.7rem] bg-chatBg flex justify-end columns-1 p-[0.5rem] overflow-auto custom-scrollbar pt-4 
+        ${settingsVisible ? "opacity-90" : "opacity-100"} 
+        ${darkMode && "dark:bg-darkcommon"}
+        `}
+        ref={contentRef}
+      >
+        <div className="block ">
+          {messages.map((item) => {
+            return (
+              <div
+                key={item.id}
+                className={`w-[12rem] h-auto bg-yourContentColor border rounded-t-[1.25rem] rounded-l-[1.25rem] px-[1.2rem] py-[0.3rem] mb-[0.5rem] break-words
+                ${darkMode && "dark:bg-darkcommon"}
+                
+                `}
+              >
+                <div className="flex items-center mb-[0.2rem]">
+                  <p
+                    className={`text-[0.85rem] mr-[0.3rem] text-maincommonColor font-bold
+                    ${darkMode && "dark:text-whiteletters"}
+                    `}
+                  >
+                    {language === "Georgian"
+                      ? "შენ"
+                      : language === "English"
+                      ? "You"
+                      : language === "Spanish"
+                      ? "Tú"
+                      : "Default Result"}
+                  </p>
+                  <Clock
+                    messageSentTime={item.time}
+                    clocksDisplay={clocksDisplay}
+                    darkMode={darkMode}
+                  />
+                </div>
+                <p
+                  className={`text-[0.8rem] text-maincommonColor font-light
+                  ${darkMode && "dark:text-whiteletters"}
+                `}
+                >
+                  {item.text}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div
+        className={`w-full h-[1.2rem] bg-chatBg
+        ${settingsVisible ? "opacity-90" : "opacity-100"}
+        ${darkMode && "dark:bg-darkcommon"}
+      `}
+      />
+      <div
+        className={`w-[25rem] h-[5rem] bg-headerBg flex items-center justify-center
+        ${darkMode && "dark:bg-darkHeadInput"}
+      `}
+      >
+        <input
+          value={message}
+          onChange={handleChangeMessage}
+          className={` w-[19.5rem] h-[3rem] outline-none 
+            px-[1.5rem] text-[0.8rem] bg-chatBg text-maincommonColor
+           placeholder-maincommonColor placeholder-opacity-753
+           focus:placeholder-gray-100 
+           ${
+             darkMode &&
+             "dark:bg-darkcommon text-whiteletters placeholder-whiteletters  dark:focus:placeholder-darkcommon "
+           }
+           `}
+          placeholder={
+            language === "Georgian"
+              ? "გამარჯობა, აქ ხარ?"
+              : language === "English"
+              ? "Hello are you there?"
+              : language === "Spanish"
+              ? "ChHola, ¿estás ahí?"
+              : "Default Result"
+          }
+        />
+        <div
+          className={`h-[3rem] w-auto flex items-center bg-chatBg pr-[1rem]
+          ${darkMode && "dark:bg-darkcommon "}
+        `}
+        >
+          <img
+            onClick={handleSubmit}
+            className={`bg-chatBg  w-[1.8rem] h-[1.6rem] cursor-pointer fill-slate-700
+            ${darkMode && "dark:bg-darkcommon "}
+            `}
+            src={darkMode ? darkSend : sendIcon}
+            alt="sendIcon"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Chat;
