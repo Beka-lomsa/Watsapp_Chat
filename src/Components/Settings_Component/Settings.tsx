@@ -141,7 +141,7 @@ const Settings = ({
                 }`}
               />
             </button>
-            <p className="text-[0.75rem] ml-[1rem] font-normal
+            <div className="text-[0.75rem] ml-[1rem] font-normal
             sm:ml-[1.5rem]
             Xsm:ml-[1rem]
             ">
@@ -152,7 +152,7 @@ const Settings = ({
                 : language === "Spanish"
                 ? "Modo oscuro"
                 : "Default Result"}
-            </p>
+            </div>
           </div>
 
           {/* CTRL + ENTER Shortcut */}
@@ -165,7 +165,7 @@ const Settings = ({
           >
             <button
               onClick={handleShortcutSetting}
-              className="h-[1.3rem] w-[2.5rem] border bg-frameColors  rounded-full flex items-center transition duration-300"
+              className="h-[1.3rem] w-[2.5rem] bg-frameColors  rounded-full flex items-center transition duration-300"
             >
               <div
                 className={`h-[1.3rem] w-[1.3rem] border border-frameColors bg-headerBg rounded-full transition duration-500 
@@ -174,13 +174,13 @@ const Settings = ({
               `}
               />
             </button>
-            <p
+            <div
               className="text-[0.75rem] ml-[1rem] font-normal flex
               sm:block
               Xsm:flex Xsm:flex-col Xsm:ml-[1rem]
             "
             >
-              <p>
+              <div>
                 {language === "Georgian"
                   ? "გაგზავნა"
                   : language === "English"
@@ -188,11 +188,11 @@ const Settings = ({
                   : language === "Spanish"
                   ? "Enviar con"
                   : "Default Result"}
-              </p>
+              </div>
               <span className="font-medium ml-[0.2rem]
               Xsm:ml-[0rem]
               ">CTRL+ENTER</span>
-            </p>
+            </div>
           </div>
 
           {/* Time Format */}
@@ -200,7 +200,7 @@ const Settings = ({
           sm:mt-[1rem]
           Xsm:ml-[0.3rem]
           ">
-            <p className="text-[0.75rem] mb-[0.3rem]">
+            <div className="text-[0.75rem] mb-[0.3rem]">
               {language === "Georgian"
                 ? "დროის ფორმატი"
                 : language === "English"
@@ -208,7 +208,7 @@ const Settings = ({
                 : language === "Spanish"
                 ? "Formato de hora"
                 : "Default Result"}
-            </p>
+            </div>
 
             {/* 12HRS */}
             <div
@@ -228,7 +228,7 @@ const Settings = ({
                     <button className="w-[0.74rem] h-[0.74rem] bg-yellow rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                   )}
                 </div>
-                <p className="text-[0.75rem] font-light ml-[0.5rem]">
+                <div className="text-[0.75rem] font-light ml-[0.5rem]">
                   {language === "Georgian"
                     ? "12 სთ"
                     : language === "English"
@@ -236,7 +236,7 @@ const Settings = ({
                     : language === "Spanish"
                     ? "12 hrs"
                     : "Default Result"}
-                </p>
+                </div>
               </div>
 
               {/* 24-HRS */}
@@ -255,7 +255,7 @@ const Settings = ({
                     <button className="w-[0.74rem] h-[0.74rem] bg-yellow rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                   )}
                 </div>
-                <p className="text-[0.75rem] font-light ml-[0.5rem]">
+                <div className="text-[0.75rem] font-light ml-[0.5rem]">
                   {language === "Georgian"
                     ? "24 სთ"
                     : language === "English"
@@ -263,7 +263,7 @@ const Settings = ({
                     : language === "Spanish"
                     ? "24 hrs"
                     : "Default Result"}
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -271,7 +271,7 @@ const Settings = ({
           <div className="mt-[2rem]
           sm:mt-[1rem]
           ">
-            <p className="text-[0.75rem] mb-[0.3rem]
+            <div className="text-[0.75rem] mb-[0.3rem]
             ">
               {language === "Georgian"
                 ? "შეარჩიე ენა"
@@ -280,7 +280,7 @@ const Settings = ({
                 : language === "Spanish"
                 ? "Idioma"
                 : "Default Result"}
-            </p>
+            </div>
             <button
               onClick={handleDropDownList}
               className={`w-[100%] flex justify-between items-center px-[0.6rem] py-[0.3rem] border border-frameColors bg-yellow-100
@@ -369,7 +369,7 @@ const Settings = ({
               alt="trash"
             />
           )}
-          <p
+          <div
             className={`text-[0.75rem] font-normal text-maincommonColor
             sm:ml-[0.2rem]
               ${darkMode && "dark:text-whiteletters"}
@@ -382,7 +382,7 @@ const Settings = ({
               : language === "Spanish"
               ? "Ajustes predeterminados"
               : "Default Result"}
-          </p>
+          </div>
         </button>
       </footer>
     </div>
