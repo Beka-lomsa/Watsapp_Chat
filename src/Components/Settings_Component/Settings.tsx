@@ -56,7 +56,7 @@ const Settings = ({
   return (
     <div
       className={`w-[15rem] h-[43.4rem] bg-headerBg font-roboto text-maincommonColor
-      2xl:w-[14rem] 2xl:h-[39.5rem]
+      2xl:w-[14rem] 2xl:h-[39.7rem]
       xl:w-[13rem] xl:h-[36rem] 
       sm:w-[11rem] sm:h-[31.5rem] sm:flex sm:flex-col sm:text-center
       Xsm:w-[9rem] Xsm:h-[28.5rem]
@@ -142,8 +142,8 @@ const Settings = ({
               />
             </button>
             <div className="text-[0.75rem] ml-[1rem] font-normal
-            sm:ml-[1.5rem]
-            Xsm:ml-[1rem]
+            sm:ml-[1rem]
+            Xsm:ml-[0.6rem]
             ">
               {language === "Georgian"
                 ? "ბნელი რეჟიმი"
@@ -290,7 +290,7 @@ const Settings = ({
                 
                 dropDown && "border-b-0"
               } 
-                ${darkMode && "dark:bg-darkHeadInput border-0"}
+                ${darkMode && "dark:bg-darkHeadInput dark:border-0"}
               `}
             >
               <h4

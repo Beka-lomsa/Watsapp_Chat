@@ -88,9 +88,13 @@ const Chat = ({
                 
                 `}
               >
-                <div className="flex items-center mb-[0.2rem]">
+                <div className="flex items-center mb-[0.2rem]
+                  sm:mb-[0.05rem]
+                ">
                   <p
                     className={`text-[0.85rem] mr-[0.3rem] text-maincommonColor font-bold
+                    sm:text-[0.7rem]
+                    Xsm:text-[0.65rem]
                     ${darkMode && "dark:text-whiteletters"}
                     `}
                   >
@@ -110,6 +114,8 @@ const Chat = ({
                 </div>
                 <p
                   className={`text-[0.8rem] text-maincommonColor font-light
+                  sm:text-[0.72rem]
+                  Xsm:text-[0.68rem]
                   ${darkMode && "dark:text-whiteletters"}
                 `}
                 >
@@ -143,8 +149,8 @@ const Chat = ({
            placeholder-maincommonColor placeholder-opacity-753
            focus:placeholder-gray-100 
            xl:w-[16.5rem] xl:h-[2.5rem]
-           sm:w-[13rem] sm:h-[2rem] sm:px-[0.5rem]
-           Xsm:w-[11rem]
+           sm:w-[13rem] sm:h-[2rem] sm:px-[0.5rem] sm:placeholder:text-[0.7rem] sm:text-[0.7rem]
+           Xsm:w-[11rem] Xsm:placeholder:text-[0.6rem] Xsm:text-[0.65rem]
            ${
              darkMode &&
              "dark:bg-darkcommon text-whiteletters placeholder-whiteletters  dark:focus:placeholder-darkcommon "

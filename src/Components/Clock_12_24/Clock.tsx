@@ -30,6 +30,8 @@ const Clock = ({
   return (
     <div
       className={`text-[0.55rem] font-light mt-[0.1rem] text-maincommonColor 
+      sm:text-[0.45rem]
+      Xsm:text-[0.4rem] Xsm:mt-[0.2rem]
       ${darkMode && "text-whiteletters"}`}
     >
       {clocksDisplay
