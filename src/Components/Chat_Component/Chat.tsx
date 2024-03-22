@@ -3,6 +3,7 @@ import Clock from "../Clock_12_24/Clock";
 import sendIcon from "../../img/sendIcon.png";
 import darkSend from "../../img/darkSend.png";
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from "react-i18next";
 
 interface chatProps {
   settingsVisible: boolean;
@@ -60,6 +61,9 @@ const Chat = ({
     };
   }, [handleSubmit, messageShortcutSetting]);
 
+  // language
+  const { t } = useTranslation();
+
   return (
     <div className="w-[25rem] h-[39.5rem] font-roboto
     2xl:w-[24rem] 2xl:h-[35.5rem]
@@ -97,14 +101,7 @@ const Chat = ({
                     Xsm:text-[0.65rem]
                     ${darkMode && "dark:text-whiteletters"}
                     `}
-                  >
-                    {language === "Georgian"
-                      ? "შენ"
-                      : language === "English"
-                      ? "You"
-                      : language === "Spanish"
-                      ? "Tú"
-                      : "Default Result"}
+                  >{t("you")}
                   </p>
                   <Clock
                     messageSentTime={item.time}
@@ -156,15 +153,7 @@ const Chat = ({
              "dark:bg-darkcommon text-whiteletters placeholder-whiteletters  dark:focus:placeholder-darkcommon "
            }
            `}
-          placeholder={
-            language === "Georgian"
-              ? "გამარჯობა, აქ ხარ?"
-              : language === "English"
-              ? "Hello are you there?"
-              : language === "Spanish"
-              ? "ChHola, ¿estás ahí?"
-              : "Default Result"
-          }
+          placeholder={t("placeholder")}
         />
         <div
           className={`h-[3rem] w-auto flex items-center bg-chatBg pr-[1rem]

@@ -4,6 +4,7 @@ import Settings from "../Settings_Component/Settings";
 import settingIcon from "../../img/SetIcon.png";
 import darkSetting from "../../img/darkSett.png";
 import "../../App.css";
+import { useTranslation } from "react-i18next";
 
 const WrapperComp = () => {
   // State to manage the visibility of the Settings component
@@ -12,6 +13,9 @@ const WrapperComp = () => {
   const [messageShortcutSetting, setMessageShortcutSetting] = useState(false);
   const [language, setLanguage] = useState("English");
   const [clocksDisplay, setClockDisplay] = useState<boolean>(true);
+
+  // language
+  const { t } = useTranslation();
 
   return (
     <div className={`bg-zinc-200 py-[4rem] relative font-roboto h-dvh pb-[50rem]
@@ -40,14 +44,8 @@ const WrapperComp = () => {
             Xsm:text-xs
           ${darkMode && "dark:text-whiteletters"}
           `}
-          >
-            {language === "Georgian"
-              ? "სასაუბრო"
-              : language === "English"
-              ? "Chat"
-              : language === "Spanish"
-              ? "Charla"
-              : "Default Result"}
+          > 
+            {t("chat")}
           </span>
           <span
             className="px-[0.4rem]"

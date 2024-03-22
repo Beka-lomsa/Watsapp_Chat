@@ -4,6 +4,7 @@ import trash from "../../img/trash.png";
 import { BsTrash3 } from "react-icons/bs";
 import darkClose from "../../img/darkClose.png";
 import downErrow from "../../img/downErrow.png";
+import { useTranslation } from "react-i18next";
 
 interface SettingsProps {
   setSettingsVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,8 +41,10 @@ const Settings = ({
   const handleDropDownList = () => {
     setDropDown(!dropDown);
   };
-  const handleLanguageChange = (lan: string) => {
-    setLanguage(lan);
+  // language
+  const { t, i18n } = useTranslation();
+  const handleLanguageChange = (lng: string) => {
+    i18n.changeLanguage(lng);
     setDropDown(false);
   };
 
@@ -73,13 +76,7 @@ const Settings = ({
           Xsm:text-xs
           "
           >
-            {language === "Georgian"
-              ? "პარამეტრები"
-              : language === "English"
-              ? "Settings"
-              : language === "Spanish"
-              ? "Ajustes"
-              : "Default Result"}
+            {t("settings")}
           </h1>
         </div>
         <div>
@@ -100,16 +97,12 @@ const Settings = ({
       "
       >
         <div className="w-[12.5rem] flex flex-col">
-          <h4 className="mt-[3.5rem] text-[0.75rem]
+          <h4
+            className="mt-[3.5rem] text-[0.75rem]
           sm:my-[0.1rem]
-          ">
-            {language === "Georgian"
-              ? "მომხმარებლის სახელი"
-              : language === "English"
-              ? "User name"
-              : language === "Spanish"
-              ? "Nombre de usuario"
-              : "Default Result"}
+          "
+          >
+            {t("userName")}
           </h4>
           <input
             className={`h-[1.5rem] mt-[0.2rem] outline-none border border-frameColors
@@ -141,17 +134,13 @@ const Settings = ({
                 }`}
               />
             </button>
-            <div className="text-[0.75rem] ml-[1rem] font-normal
+            <div
+              className="text-[0.75rem] ml-[1rem] font-normal
             sm:ml-[1rem]
             Xsm:ml-[0.6rem]
-            ">
-              {language === "Georgian"
-                ? "ბნელი რეჟიმი"
-                : language === "English"
-                ? "Dark mode"
-                : language === "Spanish"
-                ? "Modo oscuro"
-                : "Default Result"}
+            "
+            >
+              {t("darkMode")}
             </div>
           </div>
 
@@ -180,35 +169,25 @@ const Settings = ({
               Xsm:flex Xsm:flex-col Xsm:ml-[1rem]
             "
             >
-              <div>
-                {language === "Georgian"
-                  ? "გაგზავნა"
-                  : language === "English"
-                  ? "Send on"
-                  : language === "Spanish"
-                  ? "Enviar con"
-                  : "Default Result"}
-              </div>
-              <span className="font-medium ml-[0.2rem]
+              <div>{t("sendOn")}</div>
+              <span
+                className="font-medium ml-[0.2rem]
               Xsm:ml-[0rem]
-              ">CTRL+ENTER</span>
+              "
+              >
+                CTRL+ENTER
+              </span>
             </div>
           </div>
 
           {/* Time Format */}
-          <div className="flex flex-col mt-[2rem] text-[0.75rem]
+          <div
+            className="flex flex-col mt-[2rem] text-[0.75rem]
           sm:mt-[1rem]
           Xsm:ml-[0.3rem]
-          ">
-            <div className="text-[0.75rem] mb-[0.3rem]">
-              {language === "Georgian"
-                ? "დროის ფორმატი"
-                : language === "English"
-                ? "Time format"
-                : language === "Spanish"
-                ? "Formato de hora"
-                : "Default Result"}
-            </div>
+          "
+          >
+            <div className="text-[0.75rem] mb-[0.3rem]">{t("timeFormat")}</div>
 
             {/* 12HRS */}
             <div
@@ -229,13 +208,7 @@ const Settings = ({
                   )}
                 </div>
                 <div className="text-[0.75rem] font-light ml-[0.5rem]">
-                  {language === "Georgian"
-                    ? "12 სთ"
-                    : language === "English"
-                    ? "12 hrs"
-                    : language === "Spanish"
-                    ? "12 hrs"
-                    : "Default Result"}
+                  {t("12hrs")}
                 </div>
               </div>
 
@@ -256,40 +229,29 @@ const Settings = ({
                   )}
                 </div>
                 <div className="text-[0.75rem] font-light ml-[0.5rem]">
-                  {language === "Georgian"
-                    ? "24 სთ"
-                    : language === "English"
-                    ? "24 hrs"
-                    : language === "Spanish"
-                    ? "24 hrs"
-                    : "Default Result"}
+                  {t("24hrs")}
                 </div>
               </div>
             </div>
           </div>
           {/* Language */}
-          <div className="mt-[2rem]
+          <div
+            className="mt-[2rem]
           sm:mt-[1rem]
-          ">
-            <div className="text-[0.75rem] mb-[0.3rem]
-            ">
-              {language === "Georgian"
-                ? "შეარჩიე ენა"
-                : language === "English"
-                ? "Language"
-                : language === "Spanish"
-                ? "Idioma"
-                : "Default Result"}
+          "
+          >
+            <div
+              className="text-[0.75rem] mb-[0.3rem]
+            "
+            >
+              {t("language")}
             </div>
             <button
               onClick={handleDropDownList}
               className={`w-[100%] flex justify-between items-center px-[0.6rem] py-[0.3rem] border border-frameColors bg-yellow-100
               sm:w-[10rem] sm:m-auto sm:mt-[0.5rem]
               Xsm:w-[7rem]
-              ${
-                
-                dropDown && "border-b-0"
-              } 
+              ${dropDown && "border-b-0"} 
                 ${darkMode && "dark:bg-darkHeadInput dark:border-0"}
               `}
             >
@@ -320,7 +282,7 @@ const Settings = ({
               `}
               >
                 <button
-                  onClick={() => handleLanguageChange("English")}
+                  onClick={() => handleLanguageChange("en")}
                   className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
                     ${darkMode && "hover:dark:bg-neutral-900"}
                   `}
@@ -328,7 +290,7 @@ const Settings = ({
                   English
                 </button>
                 <button
-                  onClick={() => handleLanguageChange("Spanish")}
+                  onClick={() => handleLanguageChange("es")}
                   className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
                     ${darkMode && "hover:dark:bg-neutral-900"}
                   `}
@@ -336,7 +298,7 @@ const Settings = ({
                   Spanish
                 </button>
                 <button
-                  onClick={() => handleLanguageChange("Georgian")}
+                  onClick={() => handleLanguageChange("ge")}
                   className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
                    ${darkMode && "hover:dark:bg-neutral-900"}
                   `}
@@ -349,9 +311,11 @@ const Settings = ({
         </div>
       </section>
       {/* Reset Settings to default */}
-      <footer className="w-full flex justify-end absolute bottom-0 
+      <footer
+        className="w-full flex justify-end absolute bottom-0 
         sm:justify-center
-      ">
+      "
+      >
         <button
           onClick={handleResetSetting}
           className="flex px-[0.5rem] py-[0.5rem] cursor-pointer hover:underline
@@ -375,13 +339,7 @@ const Settings = ({
               ${darkMode && "dark:text-whiteletters"}
             `}
           >
-            {language === "Georgian"
-              ? "ნაგულისხმები პარამეტრები"
-              : language === "English"
-              ? "Reset Settings to default"
-              : language === "Spanish"
-              ? "Ajustes predeterminados"
-              : "Default Result"}
+            {t("resetLangs")}
           </div>
         </button>
       </footer>
