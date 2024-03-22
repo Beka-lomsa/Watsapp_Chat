@@ -84,7 +84,6 @@ const WrapperComp = () => {
             darkMode={darkMode}
             messageShortcutSetting={messageShortcutSetting}
             clocksDisplay={clocksDisplay}
-            language={language}
           />
         </div>
       </div>

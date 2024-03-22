@@ -10,7 +10,7 @@ interface chatProps {
   darkMode: boolean;
   messageShortcutSetting: boolean;
   clocksDisplay: boolean;
-  language: string;
+
 }
 
 const Chat = ({
@@ -18,7 +18,7 @@ const Chat = ({
   darkMode,
   messageShortcutSetting,
   clocksDisplay,
-  language,
+
 }: chatProps) => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<

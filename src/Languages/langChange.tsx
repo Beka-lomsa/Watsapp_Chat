@@ -7,11 +7,11 @@ import esTranslation from "./es.json";
 
 i18n.init({
   debug: true,
-  lng: "en",    // Default Language
+  lng: "English",    // Default Language
   resources: {
-    en: {translation: enTranslation},
-    ge: {translation: geTranslation},
-    es: {translation: esTranslation},
+    English: {translation: enTranslation},
+    Georgian: {translation: geTranslation},
+    Spanish: {translation: esTranslation},
   }
 })
 

@@ -46,6 +46,7 @@ const Settings = ({
   const handleLanguageChange = (lng: string) => {
     i18n.changeLanguage(lng);
     setDropDown(false);
+    setLanguage(lng)
   };
 
   // Reset all settings
@@ -54,6 +55,7 @@ const Settings = ({
     setMessageShortcutSetting(false);
     setLanguage("English");
     setClockDisplay(true);
+    i18n.changeLanguage("English")
   };
 
   return (
@@ -282,7 +284,7 @@ const Settings = ({
               `}
               >
                 <button
-                  onClick={() => handleLanguageChange("en")}
+                  onClick={() => handleLanguageChange("English")}
                   className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
                     ${darkMode && "hover:dark:bg-neutral-900"}
                   `}
@@ -290,7 +292,7 @@ const Settings = ({
                   English
                 </button>
                 <button
-                  onClick={() => handleLanguageChange("es")}
+                  onClick={() => handleLanguageChange("Spanish")}
                   className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
                     ${darkMode && "hover:dark:bg-neutral-900"}
                   `}
@@ -298,7 +300,7 @@ const Settings = ({
                   Spanish
                 </button>
                 <button
-                  onClick={() => handleLanguageChange("ge")}
+                  onClick={() => handleLanguageChange("Georgian")}
                   className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
                    ${darkMode && "hover:dark:bg-neutral-900"}
                   `}
