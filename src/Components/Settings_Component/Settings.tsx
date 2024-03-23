@@ -46,8 +46,9 @@ const Settings = ({
   const handleLanguageChange = (lng: string) => {
     i18n.changeLanguage(lng);
     setDropDown(false);
-    setLanguage(lng)
+    setLanguage(lng);
   };
+  const langList = ["English", "Spanish", "Georgian"];
 
   // Reset all settings
   const handleResetSetting = () => {
@@ -55,7 +56,7 @@ const Settings = ({
     setMessageShortcutSetting(false);
     setLanguage("English");
     setClockDisplay(true);
-    i18n.changeLanguage("English")
+    i18n.changeLanguage("English");
   };
 
   return (
@@ -283,30 +284,18 @@ const Settings = ({
                 }
               `}
               >
-                <button
-                  onClick={() => handleLanguageChange("English")}
-                  className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
+                {langList.map((lanlist) => {
+                  return (
+                    <button
+                      onClick={() => handleLanguageChange(lanlist)}
+                      className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
                     ${darkMode && "hover:dark:bg-neutral-900"}
                   `}
-                >
-                  English
-                </button>
-                <button
-                  onClick={() => handleLanguageChange("Spanish")}
-                  className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
-                    ${darkMode && "hover:dark:bg-neutral-900"}
-                  `}
-                >
-                  Spanish
-                </button>
-                <button
-                  onClick={() => handleLanguageChange("Georgian")}
-                  className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
-                   ${darkMode && "hover:dark:bg-neutral-900"}
-                  `}
-                >
-                  Georgian
-                </button>
+                    >
+                      {lanlist}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>
