@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Chat from "../Chat_Component/Chat";
-import Settings from "../Settings_Component/Settings";
+import Chat from "../Chat/Chat";
+import Settings from "../Settings/Settings";
 import settingIcon from "../../img/SetIcon.png";
 import darkSetting from "../../img/darkSett.png";
 import "../../App.css";
@@ -8,19 +8,19 @@ import { useTranslation } from "react-i18next";
 
 const WrapperComp = () => {
   // State to manage the visibility of the Settings component
-  const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const [messageShortcutSetting, setMessageShortcutSetting] = useState(false);
-  const [language, setLanguage] = useState("English");
-  const [clocksDisplay, setClockDisplay] = useState<boolean>(true);
-
+  const [isSettingsVisible, setIsSettingsVisible] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isCtrlEnterSendEnabled, setIsCtrlEnterSendEnabled] = useState<boolean>(false);
+  const [language, setLanguage] = useState<string>("English");
+  const [isClocksDisplayEnabled, setIsClocksDisplayEnabled] = useState<boolean>(true);
+  
   // language
   const { t } = useTranslation();
 
   return (
     <div className={`bg-zinc-200 py-[4rem] relative font-roboto h-dvh pb-[50rem]
     sm:pb-[32rem]
-     ${darkMode && "dark:bg-stone-900"}
+     ${isDarkMode && "dark:bg-stone-900"}
     `}>
       <div className="w-[25rem] h-[43rem] m-auto relative
       2xl:w-[24rem] 2xl:h-[39.5rem]
@@ -34,7 +34,7 @@ const WrapperComp = () => {
           xl:w-[20rem] xl:h-[2.8rem]
           sm:w-[16rem] sm:h-[2.3rem]
           Xsm:w-[14rem] Xsm:h-[2rem]
-           ${darkMode && "dark:bg-darkHeadInput"}
+           ${isDarkMode && "dark:bg-darkHeadInput"}
         `}
         >
           <span
@@ -42,14 +42,14 @@ const WrapperComp = () => {
             xl:text-base 
             sm:text-sm
             Xsm:text-xs
-          ${darkMode && "dark:text-whiteletters"}
+          ${isDarkMode && "dark:text-whiteletters"}
           `}
           > 
             {t("chat")}
           </span>
           <span
             className="px-[0.4rem]"
-            onClick={() => setSettingsVisible(!settingsVisible)}
+            onClick={() => setIsSettingsVisible(!isSettingsVisible)}
           >
             <img
               className="cursor-pointer pr-[0.1rem]
@@ -57,33 +57,33 @@ const WrapperComp = () => {
               sm:w-[1.2rem] sm:h-[1.2rem]
               Xsm:w-[1.1rem] Xsm:h-[1.1rem]
               "
-              src={darkMode ? darkSetting : settingIcon}
+              src={isDarkMode ? darkSetting : settingIcon}
               alt="settingIcon"
             />
           </span>
           {/* Settings component */}
-          {settingsVisible && (
+          {isSettingsVisible && (
             <div className="absolute top-[0rem] right-0 z-10 bg-white">
               <Settings
-                setSettingsVisible={setSettingsVisible}
-                darkMode={darkMode}
-                setDarkMode={setDarkMode}
-                messageShortcutSetting={messageShortcutSetting}
-                setMessageShortcutSetting={setMessageShortcutSetting}
+                setIsSettingsVisible={setIsSettingsVisible}
+                isDarkMode={isDarkMode}
+                setIsDarkMode={setIsDarkMode}
+                isCtrlEnterSendEnabled={isCtrlEnterSendEnabled}
+                setIsCtrlEnterSendEnabled={setIsCtrlEnterSendEnabled}
                 language={language}
                 setLanguage={setLanguage}
-                clocksDisplay={clocksDisplay}
-                setClockDisplay={setClockDisplay}
+                isClocksDisplayEnabled={isClocksDisplayEnabled}
+                setIsClocksDisplayEnabled={setIsClocksDisplayEnabled}
               />
             </div>
           )}
         </header>
         <div>
           <Chat
-            settingsVisible={settingsVisible}
-            darkMode={darkMode}
-            messageShortcutSetting={messageShortcutSetting}
-            clocksDisplay={clocksDisplay}
+            isSettingsVisible={isSettingsVisible}
+            isDarkMode={isDarkMode}
+            isCtrlEnterSendEnabled={isCtrlEnterSendEnabled}
+            isClocksDisplayEnabled={isClocksDisplayEnabled}
           />
         </div>
       </div>

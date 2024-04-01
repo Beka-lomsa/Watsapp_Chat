@@ -7,35 +7,35 @@ import downErrow from "../../img/downErrow.png";
 import { useTranslation } from "react-i18next";
 
 interface SettingsProps {
-  setSettingsVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  darkMode: boolean;
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-  messageShortcutSetting: boolean;
-  setMessageShortcutSetting: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSettingsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isDarkMode: boolean;
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  isCtrlEnterSendEnabled: boolean;
+  setIsCtrlEnterSendEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
-  clocksDisplay: boolean;
-  setClockDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+  isClocksDisplayEnabled: boolean;
+  setIsClocksDisplayEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Settings = ({
-  setSettingsVisible,
-  darkMode,
-  setDarkMode,
-  messageShortcutSetting,
-  setMessageShortcutSetting,
+  setIsSettingsVisible,
+  isDarkMode,
+  setIsDarkMode,
+  isCtrlEnterSendEnabled,
+  setIsCtrlEnterSendEnabled,
   language,
   setLanguage,
-  clocksDisplay,
-  setClockDisplay,
+  isClocksDisplayEnabled,
+  setIsClocksDisplayEnabled,
 }: SettingsProps) => {
   const [dropDown, setDropDown] = useState<boolean>(false);
 
   const handleLightDarkMode = () => {
-    setDarkMode(!darkMode);
+    setIsDarkMode(!isDarkMode);
   };
   const handleShortcutSetting = () => {
-    setMessageShortcutSetting(!messageShortcutSetting);
+    setIsCtrlEnterSendEnabled(!isCtrlEnterSendEnabled);
   };
 
   const handleDropDownList = () => {
@@ -52,10 +52,10 @@ const Settings = ({
 
   // Reset all settings
   const handleResetSetting = () => {
-    setDarkMode(false);
-    setMessageShortcutSetting(false);
+    setIsDarkMode(false);
+    setIsCtrlEnterSendEnabled(false);
     setLanguage("English");
-    setClockDisplay(true);
+    setIsClocksDisplayEnabled(true);
     i18n.changeLanguage("English");
   };
 
@@ -68,7 +68,7 @@ const Settings = ({
       Xsm:w-[9rem] Xsm:h-[28.5rem]
       
 
-    ${darkMode && "dark:bg-darkcommon text-whiteletters"}
+    ${isDarkMode && "dark:bg-darkcommon text-whiteletters"}
     `}
     >
       <header className="w-[100%] flex justify-end items-center  py-[0.7rem] px-[0.5rem]">
@@ -84,8 +84,8 @@ const Settings = ({
         </div>
         <div>
           <img
-            onClick={() => setSettingsVisible(false)}
-            src={darkMode ? darkClose : closeX}
+            onClick={() => setIsSettingsVisible(false)}
+            src={isDarkMode ? darkClose : closeX}
             alt="closeX"
             className="h-[1.2rem] w-[1.2rem] cursor-pointer
             xl:w-[1.15rem] sm:h-[1.15rem]
@@ -111,7 +111,7 @@ const Settings = ({
             className={`h-[1.5rem] mt-[0.2rem] outline-none border border-frameColors
             sm:w-[10rem] sm:m-auto
             Xsm:w-[7rem]
-             ${darkMode && "dark:bg-darkHeadInput border-0"}
+             ${isDarkMode && "dark:bg-darkHeadInput border-0"}
           `}
             type="text"
           />
@@ -132,7 +132,7 @@ const Settings = ({
                 className={`h-[1.3rem] w-[1.3rem] border border-frameColors bg-headerBg rounded-full transition duration-500 
                 
                 ${
-                  darkMode &&
+                  isDarkMode &&
                   "translate-x-[1.2rem]  dark:bg-darkYellow border border-darkYellow"
                 }`}
               />
@@ -161,8 +161,8 @@ const Settings = ({
             >
               <div
                 className={`h-[1.3rem] w-[1.3rem] border border-frameColors bg-headerBg rounded-full transition duration-500 
-                ${messageShortcutSetting && " translate-x-[1.2rem]"}
-                ${darkMode && "dark:bg-darkYellow border border-darkYellow"}
+                ${isCtrlEnterSendEnabled && " translate-x-[1.2rem]"}
+                ${isDarkMode && "dark:bg-darkYellow border border-darkYellow"}
               `}
               />
             </button>
@@ -203,10 +203,10 @@ const Settings = ({
                 className="flex items-center cursor-pointer"
               >
                 <div
-                  onClick={() => setClockDisplay(true)}
+                  onClick={() => setIsClocksDisplayEnabled(true)}
                   className="w-[1.2rem] h-[1.2rem] border border-frameColors rounded-full relative flex justify-center"
                 >
-                  {clocksDisplay && (
+                  {isClocksDisplayEnabled && (
                     <button className="w-[0.74rem] h-[0.74rem] bg-yellow rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                   )}
                 </div>
@@ -224,10 +224,10 @@ const Settings = ({
                 "
               >
                 <div
-                  onClick={() => setClockDisplay(false)}
+                  onClick={() => setIsClocksDisplayEnabled(false)}
                   className="w-[1.2rem] h-[1.2rem] border border-frameColors rounded-full relative flex justify-center"
                 >
-                  {!clocksDisplay && (
+                  {!isClocksDisplayEnabled && (
                     <button className="w-[0.74rem] h-[0.74rem] bg-yellow rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                   )}
                 </div>
@@ -255,12 +255,12 @@ const Settings = ({
               sm:w-[10rem] sm:m-auto sm:mt-[0.5rem]
               Xsm:w-[7rem]
               ${dropDown && "border-b-0"} 
-                ${darkMode && "dark:bg-darkHeadInput dark:border-0"}
+                ${isDarkMode && "dark:bg-darkHeadInput dark:border-0"}
               `}
             >
               <h4
                 className={`text-[0.75rem] font-light text-downErrow
-                 ${darkMode && "dark:text-whiteletters"}
+                 ${isDarkMode && "dark:text-whiteletters"}
               `}
               >
                 {language}
@@ -279,7 +279,7 @@ const Settings = ({
                 sm:w-[10rem] sm:m-auto
                 Xsm:w-[7rem]
                 ${
-                  darkMode &&
+                  isDarkMode &&
                   "dark:border-0 dark:text-whiteletters dark:bg-neutral-800"
                 }
               `}
@@ -289,7 +289,7 @@ const Settings = ({
                     <button
                       onClick={() => handleLanguageChange(lanlist)}
                       className={`block w-full py-1 px-2 hover:bg-frameColors focus:outline-none
-                    ${darkMode && "hover:dark:bg-neutral-900"}
+                    ${isDarkMode && "hover:dark:bg-neutral-900"}
                   `}
                     >
                       {lanlist}
@@ -313,7 +313,7 @@ const Settings = ({
           sm:align-middle sm:items-center
           "
         >
-          {darkMode ? (
+          {isDarkMode ? (
             <BsTrash3 className="mx-[0.7rem] w-[1rem] h-[0.95rem]" />
           ) : (
             <img
@@ -327,7 +327,7 @@ const Settings = ({
           <div
             className={`text-[0.75rem] font-normal text-maincommonColor
             sm:ml-[0.2rem]
-              ${darkMode && "dark:text-whiteletters"}
+              ${isDarkMode && "dark:text-whiteletters"}
             `}
           >
             {t("resetLangs")}

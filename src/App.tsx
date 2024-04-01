@@ -1,4 +1,4 @@
-import WrapperComp from "./Components/Wrapper_Of_Components/WrapperComp";
+import WrapperComp from "./Components/Wrapper/WrapperComp";
 import i18n from "./Languages/langChange";
 import { I18nextProvider } from "react-i18next";
 

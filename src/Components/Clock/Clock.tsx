@@ -1,11 +1,11 @@
 const Clock = ({
   messageSentTime,
-  clocksDisplay,
-  darkMode,
+  isClocksDisplayEnabled,
+  isDarkMode,
 }: {
   messageSentTime: Date;
-  clocksDisplay: boolean;
-  darkMode: boolean;
+  isClocksDisplayEnabled: boolean;
+  isDarkMode: boolean;
 }) => {
   // 12 Hours Display
   const TwelveHoursClock = (time: Date) => {
@@ -32,9 +32,9 @@ const Clock = ({
       className={`text-[0.55rem] font-light mt-[0.1rem] text-maincommonColor 
       sm:text-[0.45rem]
       Xsm:text-[0.4rem] Xsm:mt-[0.2rem]
-      ${darkMode && "text-whiteletters"}`}
+      ${isDarkMode && "text-whiteletters"}`}
     >
-      {clocksDisplay
+      {isClocksDisplayEnabled
         ? TwelveHoursClock(messageSentTime)
         : TwentyFourHoursClock(messageSentTime)}
     </div>

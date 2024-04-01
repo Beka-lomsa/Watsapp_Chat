@@ -1,23 +1,23 @@
 import { ChangeEvent, useState, useEffect, useRef } from "react";
-import Clock from "../Clock_12_24/Clock";
+import Clock from "../Clock/Clock";
 import sendIcon from "../../img/sendIcon.png";
 import darkSend from "../../img/darkSend.png";
 import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
 
 interface chatProps {
-  settingsVisible: boolean;
-  darkMode: boolean;
-  messageShortcutSetting: boolean;
-  clocksDisplay: boolean;
+  isSettingsVisible: boolean;
+  isDarkMode: boolean;
+  isCtrlEnterSendEnabled: boolean;
+  isClocksDisplayEnabled: boolean;
 
 }
 
 const Chat = ({
-  settingsVisible,
-  darkMode,
-  messageShortcutSetting,
-  clocksDisplay,
+  isSettingsVisible,
+  isDarkMode,
+  isCtrlEnterSendEnabled,
+  isClocksDisplayEnabled,
 
 }: chatProps) => {
   const [message, setMessage] = useState<string>("");
@@ -50,7 +50,7 @@ const Chat = ({
   //  ShortcutEvent
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (messageShortcutSetting === true && e.key === "Enter" && e.ctrlKey) {
+      if (isCtrlEnterSendEnabled === true && e.key === "Enter" && e.ctrlKey) {
         handleSubmit();
       }
     };
@@ -59,7 +59,7 @@ const Chat = ({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleSubmit, messageShortcutSetting]);
+  }, [handleSubmit, isCtrlEnterSendEnabled]);
 
   // language
   const { t } = useTranslation();
@@ -77,8 +77,8 @@ const Chat = ({
         xl:w-[20rem] xl:h-[28rem]
         sm:w-[16rem] sm:h-[25rem]
         Xsm:w-[14rem] Xsm:h-[22rem]
-        ${settingsVisible ? "opacity-90" : "opacity-100"} 
-        ${darkMode && "dark:bg-darkcommon"}
+        ${isSettingsVisible ? "opacity-90" : "opacity-100"} 
+        ${isDarkMode && "dark:bg-darkcommon"}
         `}
         ref={contentRef}
       >
@@ -88,7 +88,7 @@ const Chat = ({
               <div
                 key={item.id}
                 className={`w-[12rem] h-auto bg-yourContentColor border rounded-t-[1.25rem] rounded-l-[1.25rem] px-[1.2rem] py-[0.3rem] mb-[0.5rem] break-words
-                ${darkMode && "dark:bg-darkcommon"}
+                ${isDarkMode && "dark:bg-darkcommon"}
                 
                 `}
               >
@@ -99,21 +99,21 @@ const Chat = ({
                     className={`text-[0.85rem] mr-[0.3rem] text-maincommonColor font-bold
                     sm:text-[0.7rem]
                     Xsm:text-[0.65rem]
-                    ${darkMode && "dark:text-whiteletters"}
+                    ${isDarkMode && "dark:text-whiteletters"}
                     `}
                   >{t("you")}
                   </p>
                   <Clock
                     messageSentTime={item.time}
-                    clocksDisplay={clocksDisplay}
-                    darkMode={darkMode}
+                    isClocksDisplayEnabled={isClocksDisplayEnabled}
+                    isDarkMode={isDarkMode}
                   />
                 </div>
                 <p
                   className={`text-[0.8rem] text-maincommonColor font-light
                   sm:text-[0.72rem]
                   Xsm:text-[0.68rem]
-                  ${darkMode && "dark:text-whiteletters"}
+                  ${isDarkMode && "dark:text-whiteletters"}
                 `}
                 >
                   {item.text}
@@ -125,8 +125,8 @@ const Chat = ({
       </div>
       <div
         className={`w-full h-[1.2rem] bg-chatBg
-        ${settingsVisible ? "opacity-90" : "opacity-100"}
-        ${darkMode && "dark:bg-darkcommon"}
+        ${isSettingsVisible ? "opacity-90" : "opacity-100"}
+        ${isDarkMode && "dark:bg-darkcommon"}
       `}
       />
       <div
@@ -135,7 +135,7 @@ const Chat = ({
         xl:w-[20rem] xl:h-[4rem]
         sm:w-[16rem] sm:h-[3rem]
         Xsm:w-[14rem]
-        ${darkMode && "dark:bg-darkHeadInput"}
+        ${isDarkMode && "dark:bg-darkHeadInput"}
       `}
       >
         <input
@@ -149,7 +149,7 @@ const Chat = ({
            sm:w-[13rem] sm:h-[2rem] sm:px-[0.5rem] sm:placeholder:text-[0.7rem] sm:text-[0.7rem]
            Xsm:w-[11rem] Xsm:placeholder:text-[0.6rem] Xsm:text-[0.65rem]
            ${
-             darkMode &&
+             isDarkMode &&
              "dark:bg-darkcommon text-whiteletters placeholder-whiteletters  dark:focus:placeholder-darkcommon "
            }
            `}
@@ -159,7 +159,7 @@ const Chat = ({
           className={`h-[3rem] w-auto flex items-center bg-chatBg pr-[1rem]
           xl:h-[2.5rem]
           sm:h-[2rem]
-          ${darkMode && "dark:bg-darkcommon "}
+          ${isDarkMode && "dark:bg-darkcommon "}
         `}
         >
           <img
@@ -168,9 +168,9 @@ const Chat = ({
             xl:w-[1.4rem] xl:h-[1.4rem]
             sm:w-[1.2rem] sm:h-[1.2rem]
             Xsm:w-[1.1rem] Xsm:h-[1.1rem]
-            ${darkMode && "dark:bg-darkcommon "}
+            ${isDarkMode && "dark:bg-darkcommon "}
             `}
-            src={darkMode ? darkSend : sendIcon}
+            src={isDarkMode ? darkSend : sendIcon}
             alt="sendIcon"
           />
         </div>
